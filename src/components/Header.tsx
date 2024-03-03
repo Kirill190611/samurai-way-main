@@ -2,18 +2,10 @@ import React from 'react';
 
 export const Header = () => {
     return (
-        <div>
-            <ul>
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">News Feed</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
+        <header className="header">
+            <img className="logo"
+                 src="https://www.vhv.rs/dpng/d/476-4764006_your-logo-here-circle-hd-png-download.png"
+                 alt="Logo"/>
+        </header>
     );
 };

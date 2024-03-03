@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+.app-wrapper {
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    gap: 10px;
+    grid-template-areas: "header header"
+    "navigation content";
+    width: 1200px;
+    margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+    grid-area: header;
+    background-color: green;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navigation {
+    grid-area: navigation;
+    background-color: firebrick;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.profile {
+    grid-area: content;
+    background-color: sandybrown;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+    width: 150px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.personal-profile__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.personal-profile__avatar {
+    width: 150px;
 }
