@@ -1,0 +1,17 @@
+.navigation {
+    grid-area: navigation;
+    background-color: firebrick;
+}
+
+.navigation__list {
+    list-style-type: none;
+}
+
+.item {
+    color: white;
+}
+
+.item a {
+    color: inherit;
+    text-decoration: none;
+}

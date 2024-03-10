@@ -1,0 +1,28 @@
+.profile {
+    grid-area: content;
+    background-color: sandybrown;
+}
+
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.personalProfile__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.personalProfile__avatar {
+    width: 150px;
+}
