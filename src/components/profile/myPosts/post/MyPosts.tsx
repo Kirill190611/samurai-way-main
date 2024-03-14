@@ -6,7 +6,8 @@ export const MyPosts = () => {
     return (
         <div>
             <h3>My posts</h3>
-            <form className="" action="#">
+            <form className=""
+                  action="#">
                 <textarea placeholder="your news"></textarea>
                 <button type="submit">Add post</button>
             </form>

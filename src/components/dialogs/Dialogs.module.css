@@ -1,0 +1,17 @@
+.dialogs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    background-color: rebeccapurple;
+}
+
+.dialogs_friends_container {
+    width: 30%;
+}
+
+.dialogs_container {
+    width: 70%;
+}
