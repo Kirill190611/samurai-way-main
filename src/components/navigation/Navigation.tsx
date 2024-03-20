@@ -6,19 +6,19 @@ export const Navigation = () => {
         <nav className={classes.navigation}>
             <ul className={classes.navigation__list}>
                 <li className={classes.item}>
-                    <a href="#">Profile</a>
+                    <a href="/profile">Profile</a>
+                </li>
+                <li className={`${classes.item} ${classes.active}`}>
+                    <a href="/dialogs">Messages</a>
                 </li>
                 <li className={classes.item}>
-                    <a href="#">Messages</a>
+                    <a href="/news">News</a>
                 </li>
                 <li className={classes.item}>
-                    <a href="#">News</a>
+                    <a href="/music">Music</a>
                 </li>
                 <li className={classes.item}>
-                    <a href="#">Music</a>
-                </li>
-                <li className={classes.item}>
-                    <a href="#">Settings</a>
+                    <a href="/settings">Settings</a>
                 </li>
             </ul>
         </nav>
