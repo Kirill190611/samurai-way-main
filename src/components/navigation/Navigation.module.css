@@ -9,13 +9,10 @@
 
 .item {
     color: white;
-}
-
-.item a {
-    color: inherit;
     text-decoration: none;
 }
 
 .active {
     color: bisque;
+    text-decoration: none;
 }
