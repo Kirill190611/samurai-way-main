@@ -1,12 +1,12 @@
 import React from 'react';
-import s from './MyPosts.module.css'
+import classes from './MyPosts.module.css'
 import {Post} from "./Post";
 
 export const MyPosts = () => {
     return (
         <div>
             <h3>My posts</h3>
-            <form className=""
+            <form className={classes.form}
                   action="#">
                 <textarea placeholder="your news"></textarea>
                 <button type="submit">Add post</button>

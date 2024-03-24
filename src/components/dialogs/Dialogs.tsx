@@ -1,79 +1,35 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
+import {DialogsList, UsersProps} from "./DialogsList";
+import {DialogsMessage} from "./DialogsMessage";
 
 type DialogsProps = {
 
 }
 
 export const Dialogs = (props: DialogsProps) => {
+
+    const users: Array<UsersProps> = [
+        {id: 1, name: "Kirill", avatar: "Avatar1",},
+        {id: 2, name: "Nastya", avatar: "Avatar2",},
+        {id: 3, name: "Dima", avatar: "Avatar3",},
+        {id: 4, name: "Sergey", avatar: "Avatar4",},
+        {id: 5, name: "Artem", avatar: "Avatar5",},
+        {id: 6, name: "Valera", avatar: "Avatar6",},
+    ]
+
     return (
         <div className={classes.dialogs}>
             <h3>My dialogs</h3>
             <div className={classes.dialogs_container}>
-                <ul className={classes.dialogs_list}>
-                    <li>
-                        <NavLink to="/dialogs/1"
-                                 className={({isActive}) => (isActive ? `${classes.dialogs_user_active} + ${classes.dialogs_user}` : classes.dialogs_user)}>
-                            <div>Avatar</div>
-                            <div>Name</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dialogs/2"
-                                 className={({isActive}) => (isActive ? `${classes.dialogs_user_active} + ${classes.dialogs_user}` : classes.dialogs_user)}>
-                            <div>Avatar</div>
-                            <div>Name</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dialogs/3"
-                                 className={({isActive}) => (isActive ? `${classes.dialogs_user_active} + ${classes.dialogs_user}` : classes.dialogs_user)}>
-                            <div>Avatar</div>
-                            <div>Name</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dialogs/4"
-                                 className={({isActive}) => (isActive ? `${classes.dialogs_user_active} + ${classes.dialogs_user}` : classes.dialogs_user)}>
-                            <div>Avatar</div>
-                            <div>Name</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dialogs/5"
-                                 className={({isActive}) => (isActive ? `${classes.dialogs_user_active} + ${classes.dialogs_user}` : classes.dialogs_user)}>
-                            <div>Avatar</div>
-                            <div>Name</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dialogs/6"
-                                 className={({isActive}) => (isActive ? `${classes.dialogs_user_active} + ${classes.dialogs_user}` : classes.dialogs_user)}>
-                            <div>Avatar</div>
-                            <div>Name</div>
-                        </NavLink>
-                    </li>
-                </ul>
+                <DialogsList users={users} />
                 <ul className={classes.dialogs_messages}>
-                    <li className={classes.dialogs_message}>
-                        Message
-                    </li>
-                    <li className={classes.dialogs_message}>
-                        Message
-                    </li>
-                    <li className={classes.dialogs_message}>
-                    Message
-                    </li>
-                    <li className={classes.dialogs_message}>
-                        Message
-                    </li>
-                    <li className={classes.dialogs_message}>
-                        Message
-                    </li>
-                    <li className={classes.dialogs_message}>
-                        Message
-                    </li>
+                    <DialogsMessage message="Hello"/>
+                    <DialogsMessage message="Im Kirill"/>
+                    <DialogsMessage message="How are you?"/>
+                    <DialogsMessage message="OK"/>
+                    <DialogsMessage message="HI"/>
+                    <DialogsMessage message="Hello"/>
                 </ul>
             </div>
         </div>
