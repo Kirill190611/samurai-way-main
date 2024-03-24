@@ -1,6 +1,6 @@
 .dialogs {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -8,10 +8,27 @@
     background-color: rebeccapurple;
 }
 
-.dialogs_friends_container {
+.dialogs_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.dialogs_list {
     width: 30%;
 }
 
-.dialogs_container {
+.dialogs_user {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.dialogs_messages {
     width: 70%;
+}
+
+.dialogs_message {
+    margin-bottom: 30px;
 }
