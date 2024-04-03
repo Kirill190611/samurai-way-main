@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import {DialogsList, UsersProps} from "./DialogsList";
-import {DialogsMessage} from "./DialogsMessage";
+import {MessageProps, MessagesList} from "./MessagesList";
 
 type DialogsProps = {
 
@@ -18,19 +18,21 @@ export const Dialogs = (props: DialogsProps) => {
         {id: 6, name: "Valera", avatar: "Avatar6",},
     ]
 
+    const messages: Array<MessageProps> = [
+        {id: 1, message: "Hello",},
+        {id: 2, message: "Im Kirill",},
+        {id: 3, message: "How are you?",},
+        {id: 4, message: "OK",},
+        {id: 5, message: "HI",},
+        {id: 6, message: "Hello",},
+    ]
+
     return (
         <div className={classes.dialogs}>
             <h3>My dialogs</h3>
             <div className={classes.dialogs_container}>
                 <DialogsList users={users} />
-                <ul className={classes.dialogs_messages}>
-                    <DialogsMessage message="Hello"/>
-                    <DialogsMessage message="Im Kirill"/>
-                    <DialogsMessage message="How are you?"/>
-                    <DialogsMessage message="OK"/>
-                    <DialogsMessage message="HI"/>
-                    <DialogsMessage message="Hello"/>
-                </ul>
+                <MessagesList messages={messages}/>
             </div>
         </div>
     );
