@@ -22,11 +22,11 @@ const App = () => {
                         <Route path='/dialogs/*'
                                Component={Dialogs}/>
                         <Route path='/news/*'
-                               Component={News} />
+                               Component={News}/>
                         <Route path='/music/*'
-                               Component={Music} />
+                               Component={Music}/>
                         <Route path='/settings/*'
-                               Component={Settings} />
+                               Component={Settings}/>
                     </Routes>
                 </div>
             </div>

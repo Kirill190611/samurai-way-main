@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from "./Dialogs.module.css";
+import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
 
 export type MessageProps = {

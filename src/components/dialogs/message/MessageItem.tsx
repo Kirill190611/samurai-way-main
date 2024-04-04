@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {MessageProps} from "./MessagesList";
-import classes from "./Dialogs.module.css";
+import classes from "../Dialogs.module.css";
 
 export const MessageItem = ({
                                 id,

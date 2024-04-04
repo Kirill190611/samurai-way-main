@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
-import {DialogsList, UsersProps} from "./DialogsList";
-import {MessageProps, MessagesList} from "./MessagesList";
+import {DialogsList, UsersProps} from "./dialog/DialogsList";
+import {MessageProps, MessagesList} from "./message/MessagesList";
 
 type DialogsProps = {
 
