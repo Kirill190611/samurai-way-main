@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classes from "./Dialogs.module.css";
+import {MessageItem} from "./MessageItem";
 
 export type MessageProps = {
     id: number
@@ -9,17 +10,14 @@ export type MessageProps = {
 type MessagesListProps = {
     messages: Array<MessageProps>
 };
-export const MessagesList = ({messages}: MessagesListProps) => {
+export const MessagesList = ({
+                                 messages
+                             }: MessagesListProps) => {
     return (
         <ul className={classes.dialogs_messages}>
 
-            {messages.map(message => {
-                return (
-                    <li className={classes.dialogs_message} key={message.id}>
-                        {message.message}
-                    </li>
-                )
-            })}
+            {messages.map(message => <MessageItem id={message.id}
+                                                  message={message.message}/>)}
 
         </ul>
     );

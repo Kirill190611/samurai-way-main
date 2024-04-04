@@ -1,5 +1,6 @@
 import * as React from 'react';
 import s from "./Post.module.css";
+import {PostItem} from "./PostItem";
 
 export type PostProps = {
     id: number
@@ -11,23 +12,17 @@ export type PostProps = {
 type PostListProps = {
     postsData: Array<PostProps>
 };
-export const PostList = ({postsData}: PostListProps) => {
+export const PostList = ({
+                             postsData
+                         }: PostListProps) => {
     return (
         <ul>
 
-            {postsData.map(post => {
-                return (
-                    <li className={s.item} key={post.id}>
-                        <img src={post.src}
-                             alt={`Avatar of ${post.id} user`}/>
-                        <span>{post.post}</span>
-                        <div>
-                            <button>Like</button>
-                            <span>{post.likesCount}</span>
-                        </div>
-                    </li>
-                )
-            })}
+            {postsData.map(post => <PostItem id={post.id}
+                                             post={post.post}
+                                             likesCount={post.likesCount}
+                                             src={post.src}/>
+            )}
 
         </ul>
     );
