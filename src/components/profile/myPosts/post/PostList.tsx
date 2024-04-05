@@ -1,13 +1,6 @@
 import * as React from 'react';
-import s from "./Post.module.css";
 import {PostItem} from "./PostItem";
-
-export type PostProps = {
-    id: number
-    post: string
-    likesCount: number
-    src: string
-}
+import {PostProps} from "../../../../index";
 
 type PostListProps = {
     postsData: Array<PostProps>

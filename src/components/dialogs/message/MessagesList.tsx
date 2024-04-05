@@ -1,11 +1,7 @@
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
-
-export type MessageProps = {
-    id: number
-    message: string
-}
+import {MessageProps} from "../../../index";
 
 type MessagesListProps = {
     messages: Array<MessageProps>

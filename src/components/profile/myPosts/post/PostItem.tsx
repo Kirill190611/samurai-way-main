@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import {PostProps} from "./PostList";
 import s from "./Post.module.css";
+import {PostProps} from "../../../../index";
 
 export const PostItem = ({
                              id,

@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './MyPosts.module.css'
-import {PostList, PostProps} from "./PostList";
+import {PostList} from "./PostList";
+import {PostProps} from "../../../../index";
 
 type MyPostsProps = {
     posts: Array<PostProps>

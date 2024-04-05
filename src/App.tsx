@@ -8,8 +8,21 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
+import {MessageProps, PostProps, ProfileDataProps, UsersProps} from "./index";
 
-const App = () => {
+type AppProps = {
+    posts: Array<PostProps>
+    users: Array<UsersProps>
+    messages: Array<MessageProps>
+    profileData: Array<ProfileDataProps>
+}
+
+const App = ({
+                 posts,
+                 users,
+                 messages,
+                 profileData,
+             }: AppProps) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -18,9 +31,11 @@ const App = () => {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path='/profile/*'
-                               Component={Profile}/>
+                               element={<Profile posts={posts}
+                                                 profile={profileData}/>}/>
                         <Route path='/dialogs/*'
-                               Component={Dialogs}/>
+                               element={<Dialogs users={users}
+                                                 messages={messages}/>}/>
                         <Route path='/news/*'
                                Component={News}/>
                         <Route path='/music/*'

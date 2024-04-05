@@ -1,44 +1,43 @@
 import React from 'react';
 import classes from "../Profile.module.css";
+import {ProfileDataProps} from "../../../index";
 
 type ProfileInfoProps = {
-    profileImage: string
-    avatarImage: string
-    name: string
-    birthdayDate: string
-    city: string
-    education: string
+    profile: Array<ProfileDataProps>
 }
 
 export const ProfileInfo = ({
-                                profileImage,
-                                avatarImage,
-                                name,
-                                birthdayDate,
-                                city,
-                                education
+                                profile
                             }: ProfileInfoProps) => {
     return (
         <div className={classes.profile__container}>
-            <img className={classes.profile__image}
-                 src={`${profileImage}`}
-                 alt="Profile photo"/>
-            <div className={classes.personalProfile__container}>
-                <img className={classes.personalProfile__avatar}
-                     src={`${avatarImage}`}
-                     alt="Profile avatar"/>
-                <div>
-                    <h2>{name}</h2>
-                    <ul>
-                        <li>{birthdayDate}</li>
-                        <li>City: {city}</li>
-                        <li>Education: {education}</li>
-                        <li>
-                            <a href="#">#</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+            {profile.map(p => {
+                return (
+                    <>
+                        <img className={classes.profile__image}
+                             src={`${p.profileImage}`}
+                             alt={`Profile photo of ${p.name} user`}/>
+                        <div className={classes.personalProfile__container}>
+                            <img className={classes.personalProfile__avatar}
+                                 src={`${p.avatarImage}`}
+                                 alt={`Profile avatar of ${p.name} user`}/>
+                            <div>
+                                <h2>{p.name}</h2>
+                                <ul>
+                                    <li>{p.birthdayDate}</li>
+                                    <li>City: {p.city}</li>
+                                    <li>Education: {p.education}</li>
+                                    <li>
+                                        <a href="#">#</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </>
+                )
+            })}
+
         </div>
     );
 };
