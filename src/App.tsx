@@ -8,20 +8,14 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {MessageProps, PostProps, ProfileDataProps, UsersProps} from "./index";
+import {StateProps} from "./redux/State";
 
 type AppProps = {
-    posts: Array<PostProps>
-    users: Array<UsersProps>
-    messages: Array<MessageProps>
-    profileData: Array<ProfileDataProps>
+    state: StateProps
 }
 
 const App = ({
-                 posts,
-                 users,
-                 messages,
-                 profileData,
+                 state
              }: AppProps) => {
     return (
         <BrowserRouter>
@@ -31,11 +25,9 @@ const App = ({
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path='/profile/*'
-                               element={<Profile posts={posts}
-                                                 profile={profileData}/>}/>
+                               element={<Profile state={state.profilePage}/>}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs users={users}
-                                                 messages={messages}/>}/>
+                               element={<Dialogs state={state.dialogsPage}/>}/>
                         <Route path='/news/*'
                                Component={News}/>
                         <Route path='/music/*'

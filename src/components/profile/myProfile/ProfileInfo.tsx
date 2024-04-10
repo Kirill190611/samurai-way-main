@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "../Profile.module.css";
-import {ProfileDataProps} from "../../../index";
+import {ProfileDataProps} from "../../../redux/State";
 
 type ProfileInfoProps = {
     profile: Array<ProfileDataProps>

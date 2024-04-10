@@ -2,20 +2,18 @@ import React from 'react';
 import classes from './Profile.module.css';
 import {MyPosts} from "./myPosts/post/MyPosts";
 import {ProfileInfo} from "./myProfile/ProfileInfo";
-import {PostProps, ProfileDataProps} from "../../index";
+import {ProfileStateProps} from "../../redux/State";
 
 type ProfileProps = {
-    posts: Array<PostProps>
-    profile: Array<ProfileDataProps>
+    state: ProfileStateProps
 }
 export const Profile = ({
-                            posts,
-                            profile
+                            state
                         }: ProfileProps) => {
     return (
         <main className={classes.profile}>
-            <ProfileInfo profile={profile}/>
-            <MyPosts posts={posts}/>
+            <ProfileInfo profile={state.profileData}/>
+            <MyPosts posts={state.postsData}/>
         </main>
     );
 };
