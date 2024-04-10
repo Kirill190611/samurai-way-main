@@ -5,10 +5,12 @@ import {MessageProps} from "../../../redux/State";
 
 export const MessageItem = ({
                                 id,
-                                message
+                                message,
+                                isFriendMessage
                             }: MessageProps) => {
     return (
-        <li className={classes.dialogs_message} key={id}>
+        <li className={isFriendMessage ? classes.dialogs_message_friend : classes.dialogs_message}
+            key={id}>
             {message}
         </li>
     );

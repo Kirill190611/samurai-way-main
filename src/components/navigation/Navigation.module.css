@@ -16,3 +16,40 @@
     color: bisque;
     text-decoration: none;
 }
+
+.topFriend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.friend__list {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    gap: 10px;
+}
+
+.friend__list__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80px;
+}
+
+.friend__list__itemAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f3f168;
+    text-align: center;
+}
+
+.friend__list__itemName {
+    color: #FFFFFF;
+}

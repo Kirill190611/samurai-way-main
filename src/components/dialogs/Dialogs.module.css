@@ -33,9 +33,38 @@
 }
 
 .dialogs_messages {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
     width: 70%;
+    padding: 20px;
 }
 
 .dialogs_message {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 100px;
+    width: 250px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #4accb8;
     margin-bottom: 30px;
+    color: #FFFFFF;
+}
+
+.dialogs_message_friend {
+    align-self: flex-end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    min-width: 100px;
+    width: 250px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #4accb8;
+    margin-bottom: 30px;
+    color: #FFFFFF;
 }

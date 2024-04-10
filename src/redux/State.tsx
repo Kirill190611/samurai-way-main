@@ -23,6 +23,13 @@ export type UsersProps = {
 export type MessageProps = {
     id: number
     message: string
+    isFriendMessage: boolean
+}
+
+export type TopFriendsProps = {
+    id: number
+    name: string
+    avatar: string
 }
 
 export type ProfileStateProps = {
@@ -35,9 +42,14 @@ export type DialogsStateProps = {
     messages: Array<MessageProps>
 }
 
+export type NavigationStateProps = {
+    topFriends: Array<TopFriendsProps>
+}
+
 export type StateProps = {
     profilePage: ProfileStateProps
     dialogsPage: DialogsStateProps
+    navigationPage: NavigationStateProps
 }
 
 export const state: StateProps = {
@@ -83,13 +95,19 @@ export const state: StateProps = {
             {id: 6, name: "Valera", avatar: "Avatar6",},
         ],
         messages: [
-            {id: 1, message: "Hello",},
-            {id: 2, message: "Im Kirill",},
-            {id: 3, message: "How are you?",},
-            {id: 4, message: "OK",},
-            {id: 5, message: "HI",},
-            {id: 6, message: "Hello",},
-
+            {id: 1, message: "Hello", isFriendMessage: false},
+            {id: 2, message: "Hello, Im Kirill", isFriendMessage: true},
+            {id: 3, message: "How are you?", isFriendMessage: true},
+            {id: 4, message: "OK", isFriendMessage: false},
+            {id: 5, message: "What about you?", isFriendMessage: false},
+            {id: 6, message: "Im good too", isFriendMessage: true},
         ],
     },
+    navigationPage: {
+        topFriends: [
+            { id: 1, name: "Nastya", avatar: "avatar 1"},
+            { id: 2, name: "Sasha", avatar: "avatar 2"},
+            { id: 3, name: "Lika", avatar: "avatar 3"},
+        ]
+    }
 }

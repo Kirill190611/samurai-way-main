@@ -21,7 +21,7 @@ const App = ({
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navigation/>
+                <Navigation state={state.navigationPage}/>
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path='/profile/*'

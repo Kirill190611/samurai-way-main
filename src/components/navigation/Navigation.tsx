@@ -1,8 +1,16 @@
 import React from 'react';
 import classes from './Navigation.module.css';
 import {NavLink} from "react-router-dom";
+import {TopFriends} from "./TopFriends";
+import {NavigationStateProps} from "../../redux/State";
 
-export const Navigation = () => {
+type NavigationProps = {
+    state: NavigationStateProps
+}
+
+export const Navigation = ({
+                               state
+                           }: NavigationProps) => {
     return (
         <nav className={classes.navigation}>
             <ul className={classes.navigation__list}>
@@ -27,6 +35,7 @@ export const Navigation = () => {
                              className={({isActive}) => (isActive ? classes.active : classes.item)}>Settings</NavLink>
                 </li>
             </ul>
+            <TopFriends friendsList={state.topFriends}/>
         </nav>
     );
 };

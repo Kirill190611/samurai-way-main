@@ -13,7 +13,8 @@ export const MessagesList = ({
         <ul className={classes.dialogs_messages}>
 
             {messages.map(message => <MessageItem id={message.id}
-                                                  message={message.message}/>)}
+                                                  message={message.message}
+                                                  isFriendMessage={message.isFriendMessage}/>)}
 
         </ul>
     );
