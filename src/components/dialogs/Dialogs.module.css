@@ -32,11 +32,16 @@
     text-decoration: none;
 }
 
+.dialogs_message__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .dialogs_messages {
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    width: 70%;
     padding: 20px;
 }
 
@@ -67,4 +72,14 @@
     background-color: #4accb8;
     margin-bottom: 30px;
     color: #FFFFFF;
+}
+
+.dialogs_addMessage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    textarea {
+        width: 70%;
+    }
 }
