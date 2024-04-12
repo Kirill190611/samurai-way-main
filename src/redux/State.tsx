@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 export type PostProps = {
     id: number
     post: string
@@ -110,4 +112,14 @@ export const state: StateProps = {
             { id: 3, name: "Lika", avatar: "avatar 3"},
         ]
     }
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost = {
+        id: 4,
+        post: postMessage,
+        likesCount: 0,
+        src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
+    }
+    state.profilePage.postsData.push(newPost);
 }

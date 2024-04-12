@@ -1,18 +1,21 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import classes from './MyPosts.module.css'
 import {PostList} from "./PostList";
-import {PostProps} from "../../../../redux/State";
+import {addPost, PostProps, state} from "../../../../redux/State";
 
 type MyPostsProps = {
     posts: Array<PostProps>
+    addPost: (postMessage: string) => void
 }
 
-export const MyPosts = ({posts}: MyPostsProps) => {
+export const MyPosts = ({
+                            posts,
+                            addPost
+                        }: MyPostsProps) => {
     const newPostElement = useRef<HTMLTextAreaElement>(null)
     const onAddPost = () => {
         if (newPostElement.current !== null) {
-            let text = newPostElement.current.value;
-            alert(text);
+            addPost(newPostElement.current.value);
         }
     }
 

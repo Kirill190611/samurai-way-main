@@ -12,10 +12,12 @@ import {StateProps} from "./redux/State";
 
 type AppProps = {
     state: StateProps
+    addPost: (postMessage: string) => void
 }
 
 const App = ({
-                 state
+                 state,
+                 addPost,
              }: AppProps) => {
     return (
         <BrowserRouter>
@@ -25,7 +27,8 @@ const App = ({
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path='/profile/*'
-                               element={<Profile state={state.profilePage}/>}/>
+                               element={<Profile state={state.profilePage}
+                                                 addPost={addPost}/>}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs state={state.dialogsPage}/>}/>
                         <Route path='/news/*'
