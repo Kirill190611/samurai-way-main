@@ -1,38 +1,41 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
 import classes from './MyPosts.module.css'
 import {PostList} from "./PostList";
-import {addPost, PostProps, state} from "../../../../redux/State";
+import {addPost, PostProps, state, updateNewPostText} from "../../../../redux/State";
 
 type MyPostsProps = {
     posts: Array<PostProps>
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
 export const MyPosts = ({
                             posts,
-                            addPost
+                            addPost,
+                            newPostText,
+                            updateNewPostText,
                         }: MyPostsProps) => {
     const newPostElement = useRef<HTMLTextAreaElement>(null)
 
-    const [value, setValue] = useState("")
     const onAddPost = () => {
-        if (newPostElement.current !== null) {
-            addPost(newPostElement.current.value);
-        }
+        addPost();
     }
 
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setValue(e.currentTarget.value)
+    const onPostChange = () => {
+        if (newPostElement.current !== null) {
+            updateNewPostText(newPostElement.current.value);
+        }
     }
 
     return (
         <div>
             <h3>My posts</h3>
             <div className={classes.form}>
-                <textarea value={value}
+                <textarea value={newPostText}
                           ref={newPostElement}
-                          onChange={onChangeHandler}
-                          placeholder="your news"></textarea>
+                          placeholder="your news"
+                          onChange={onPostChange}/>
                 <button onClick={onAddPost}>Add post</button>
             </div>
             <PostList postsData={posts}/>

@@ -37,6 +37,7 @@ export type TopFriendsProps = {
 export type ProfileStateProps = {
     postsData: Array<PostProps>
     profileData: Array<ProfileDataProps>
+    newPostText: string
 }
 
 export type DialogsStateProps = {
@@ -86,6 +87,7 @@ export const state: StateProps = {
                 education: "Bauman Moscow State Technical University`16",
             },
         ],
+        newPostText: "IT-KAMASUTRA",
     },
     dialogsPage: {
         users: [
@@ -114,12 +116,19 @@ export const state: StateProps = {
     }
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     const newPost = {
         id: 4,
-        post: postMessage,
+        post: state.profilePage.newPostText,
         likesCount: 0,
         src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
     }
     state.profilePage.postsData.push(newPost);
+    state.profilePage.newPostText = "";
 }
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+}
+
+//todo: переделать по видео 33
