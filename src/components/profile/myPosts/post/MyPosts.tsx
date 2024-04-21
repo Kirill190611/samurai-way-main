@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
 import classes from './MyPosts.module.css'
 import {PostList} from "./PostList";
-import {addPost, PostProps, state, updateNewPostText} from "../../../../redux/State";
+import {PostProps} from "../../../../redux/State";
 
 type MyPostsProps = {
     posts: Array<PostProps>

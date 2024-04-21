@@ -1,7 +1,3 @@
-let rerenderEntireTree = (state: StateProps) => {
-    console.log("State were changed")
-}
-
 export type PostProps = {
     id: number
     post: string
@@ -58,105 +54,115 @@ export type StateProps = {
     navigationPage: NavigationStateProps
 }
 
-export const state: StateProps = {
-    profilePage: {
-        postsData: [
-            {
-                id: 1,
-                post: "Hello. How are you",
-                likesCount: 5,
-                src: "https://i1.sndcdn.com/avatars-000179405104-pcjko5-t240x240.jpg",
-            },
-            {
-                id: 2,
-                post: "My first post",
-                likesCount: 10,
-                src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp",
-            },
-            {
-                id: 3,
-                post: "My second post",
-                likesCount: 15,
-                src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp",
-            },
-        ],
-        profileData: [
-            {
-                name: "Soldatov Kirill",
-                birthdayDate: "19/06/1994",
-                profileImage: "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg",
-                avatarImage: "https://i1.sndcdn.com/avatars-000179405104-pcjko5-t240x240.jpg",
-                city: "Obninsk",
-                education: "Bauman Moscow State Technical University`16",
-            },
-        ],
-        newPostText: "IT-KAMASUTRA",
+export type StoreProps = {
+    _state: StateProps
+    _callSubscriber: (state: StateProps) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addMessage: () => void
+    updatedNewMessageText: (newMessage: string) => void
+    subscribe: (observer: (state: StateProps) => void) => void
+    getState: () => StateProps
+}
+
+export let store: StoreProps = {
+    _state: {
+        profilePage: {
+            postsData: [
+                {
+                    id: 1,
+                    post: "Hello. How are you",
+                    likesCount: 5,
+                    src: "https://i1.sndcdn.com/avatars-000179405104-pcjko5-t240x240.jpg",
+                },
+                {
+                    id: 2,
+                    post: "My first post",
+                    likesCount: 10,
+                    src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp",
+                },
+                {
+                    id: 3,
+                    post: "My second post",
+                    likesCount: 15,
+                    src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp",
+                },
+            ],
+            profileData: [
+                {
+                    name: "Soldatov Kirill",
+                    birthdayDate: "19/06/1994",
+                    profileImage: "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg",
+                    avatarImage: "https://i1.sndcdn.com/avatars-000179405104-pcjko5-t240x240.jpg",
+                    city: "Obninsk",
+                    education: "Bauman Moscow State Technical University`16",
+                },
+            ],
+            newPostText: "IT-KAMASUTRA",
+        },
+        dialogsPage: {
+            users: [
+                {id: 1, name: "Kirill", avatar: "Avatar1",},
+                {id: 2, name: "Nastya", avatar: "Avatar2",},
+                {id: 3, name: "Dima", avatar: "Avatar3",},
+                {id: 4, name: "Sergey", avatar: "Avatar4",},
+                {id: 5, name: "Artem", avatar: "Avatar5",},
+                {id: 6, name: "Valera", avatar: "Avatar6",},
+            ],
+            messages: [
+                {id: 1, message: "Hello", isFriendMessage: false},
+                {id: 2, message: "Hello, Im Kirill", isFriendMessage: true},
+                {id: 3, message: "How are you?", isFriendMessage: true},
+                {id: 4, message: "OK", isFriendMessage: false},
+                {id: 5, message: "What about you?", isFriendMessage: false},
+                {id: 6, message: "Im good too", isFriendMessage: true},
+            ],
+            newMessageText: "Test message",
+        },
+        navigationPage: {
+            topFriends: [
+                { id: 1, name: "Nastya", avatar: "avatar 1"},
+                { id: 2, name: "Sasha", avatar: "avatar 2"},
+                { id: 3, name: "Lika", avatar: "avatar 3"},
+            ]
+        }
     },
-    dialogsPage: {
-        users: [
-            {id: 1, name: "Kirill", avatar: "Avatar1",},
-            {id: 2, name: "Nastya", avatar: "Avatar2",},
-            {id: 3, name: "Dima", avatar: "Avatar3",},
-            {id: 4, name: "Sergey", avatar: "Avatar4",},
-            {id: 5, name: "Artem", avatar: "Avatar5",},
-            {id: 6, name: "Valera", avatar: "Avatar6",},
-        ],
-        messages: [
-            {id: 1, message: "Hello", isFriendMessage: false},
-            {id: 2, message: "Hello, Im Kirill", isFriendMessage: true},
-            {id: 3, message: "How are you?", isFriendMessage: true},
-            {id: 4, message: "OK", isFriendMessage: false},
-            {id: 5, message: "What about you?", isFriendMessage: false},
-            {id: 6, message: "Im good too", isFriendMessage: true},
-        ],
-        newMessageText: "Test message",
+    getState() {
+        return this._state;
     },
-    navigationPage: {
-        topFriends: [
-            { id: 1, name: "Nastya", avatar: "avatar 1"},
-            { id: 2, name: "Sasha", avatar: "avatar 2"},
-            { id: 3, name: "Lika", avatar: "avatar 3"},
-        ]
-    }
-}
-
-//Logic for added posts
-export const addPost = () => {
-    const newPost = {
-        id: 4,
-        post: state.profilePage.newPostText,
-        likesCount: 0,
-        src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
-    }
-    state.profilePage.postsData.push(newPost);
-    state.profilePage.newPostText = "";
-    rerenderEntireTree(state);
-}
-
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
-}
-
-//Logic for added messages
-
-export const addMessage = () => {
-    const newMessage = {
-        id: 7,
-        message: state.dialogsPage.newMessageText,
-        isFriendMessage: false,
-    }
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.newMessageText = "";
-    rerenderEntireTree(state)
-}
-
-export const updatedNewMessageText = (newMessage: string) => {
-    state.dialogsPage.newMessageText = newMessage;
-    rerenderEntireTree(state);
-}
-
-//For rerender entire tree
-export const subscribe = (observer: (state: StateProps) => void) => {
-    rerenderEntireTree = observer; // наблюдатель // publisher-subscriber // addEventListener
+    _callSubscriber(state: StateProps) {
+        console.log("State were changed")
+    },
+    addPost() {
+        const newPost = {
+            id: 4,
+            post: this._state.profilePage.newPostText,
+            likesCount: 0,
+            src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
+        }
+        this._state.profilePage.postsData.push(newPost);
+        this._state.profilePage.newPostText = "";
+        this._callSubscriber(this._state);
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state);
+    },
+    addMessage() {
+        const newMessage = {
+            id: 7,
+            message: this._state.dialogsPage.newMessageText,
+            isFriendMessage: false,
+        }
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.newMessageText = "";
+        this._callSubscriber(this._state)
+    },
+    updatedNewMessageText(newMessage: string) {
+        this._state.dialogsPage.newMessageText = newMessage;
+        this._callSubscriber(this._state);
+    },
+    subscribe(observer: (state: StateProps) => void) {
+        this._callSubscriber = observer; // наблюдатель // publisher-subscriber // addEventListener
+    },
 }

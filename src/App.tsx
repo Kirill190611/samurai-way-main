@@ -25,6 +25,7 @@ const App = ({
                  addMessage,
                  updatedNewMessageText,
              }: AppProps) => {
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
