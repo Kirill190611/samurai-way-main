@@ -9,7 +9,7 @@ export const MessageItem = ({
                                 isFriendMessage
                             }: MessageProps) => {
     return (
-        <li className={isFriendMessage ? classes.dialogs_message_friend : classes.dialogs_message}
+        <li className={isFriendMessage ? classes.dialogs_message : classes.dialogs_message_friend}
             key={id}>
             {message}
         </li>

@@ -1,20 +1,30 @@
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
-import {MessageProps} from "../../../redux/State";
+import {addMessage, MessageProps} from "../../../redux/State";
 import {useRef} from "react";
 
 type MessagesListProps = {
     messages: Array<MessageProps>
+    addMessage: () => void
+    updatedNewMessageText: (newMessage: string) => void
+    newMessage: string
 };
 export const MessagesList = ({
-                                 messages
+                                 messages,
+                                 addMessage,
+                                 updatedNewMessageText,
+                                 newMessage,
                              }: MessagesListProps) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
 
     const onAddMessage = () => {
+        addMessage();
+    }
+
+    const onMessageChange = () => {
         if (newMessageElement.current !== null) {
-            alert(newMessageElement.current.value)
+            updatedNewMessageText(newMessageElement.current.value);
         }
     }
 
@@ -28,7 +38,9 @@ export const MessagesList = ({
 
             </ul>
             <form className={classes.dialogs_addMessage} action="#">
-                <textarea ref={newMessageElement} placeholder="your news"></textarea>
+                <textarea ref={newMessageElement} value={newMessage}
+                          placeholder="your news"
+                          onChange={onMessageChange}/>
                 <button onClick={onAddMessage}>Add message</button>
             </form>
         </div>

@@ -43,6 +43,7 @@ export type ProfileStateProps = {
 export type DialogsStateProps = {
     users: Array<UsersProps>
     messages: Array<MessageProps>
+    newMessageText: string
 }
 
 export type NavigationStateProps = {
@@ -106,6 +107,7 @@ export const state: StateProps = {
             {id: 5, message: "What about you?", isFriendMessage: false},
             {id: 6, message: "Im good too", isFriendMessage: true},
         ],
+        newMessageText: "Test message",
     },
     navigationPage: {
         topFriends: [
@@ -116,6 +118,7 @@ export const state: StateProps = {
     }
 }
 
+//Logic for added posts
 export const addPost = () => {
     const newPost = {
         id: 4,
@@ -130,5 +133,23 @@ export const addPost = () => {
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
+    rerenderEntireTree();
+}
+
+//Logic for added messages
+
+export const addMessage = () => {
+    const newMessage = {
+        id: 7,
+        message: state.dialogsPage.newMessageText,
+        isFriendMessage: false,
+    }
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = "";
+    rerenderEntireTree()
+}
+
+export const updatedNewMessageText = (newMessage: string) => {
+    state.dialogsPage.newMessageText = newMessage;
     rerenderEntireTree();
 }
