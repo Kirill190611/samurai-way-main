@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {rerenderEntireTree} from "../render";
 
 export type PostProps = {
     id: number
@@ -125,10 +125,10 @@ export const addPost = () => {
     }
     state.profilePage.postsData.push(newPost);
     state.profilePage.newPostText = "";
+    rerenderEntireTree();
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
+    rerenderEntireTree();
 }
-
-//todo: переделать по видео 33
