@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = (state: StateProps) => {
+    console.log("State were changed")
+}
 
 export type PostProps = {
     id: number
@@ -128,12 +130,12 @@ export const addPost = () => {
     }
     state.profilePage.postsData.push(newPost);
     state.profilePage.newPostText = "";
-    rerenderEntireTree();
+    rerenderEntireTree(state);
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree();
+    rerenderEntireTree(state);
 }
 
 //Logic for added messages
@@ -146,10 +148,15 @@ export const addMessage = () => {
     }
     state.dialogsPage.messages.push(newMessage);
     state.dialogsPage.newMessageText = "";
-    rerenderEntireTree()
+    rerenderEntireTree(state)
 }
 
 export const updatedNewMessageText = (newMessage: string) => {
     state.dialogsPage.newMessageText = newMessage;
-    rerenderEntireTree();
+    rerenderEntireTree(state);
+}
+
+//For rerender entire tree
+export const subscribe = (observer: (state: StateProps) => void) => {
+    rerenderEntireTree = observer; // наблюдатель // publisher-subscriber // addEventListener
 }
