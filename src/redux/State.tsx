@@ -147,7 +147,7 @@ export let store: StoreProps = {
             ]
         }
     },
-    _callSubscriber(state: StateProps) {
+    _callSubscriber(_state: StateProps) {
         console.log("State were changed")
     },
 
