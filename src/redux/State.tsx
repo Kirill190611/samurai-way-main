@@ -57,13 +57,23 @@ export type StateProps = {
 export type StoreProps = {
     _state: StateProps
     _callSubscriber: (state: StateProps) => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
     addMessage: () => void
     updatedNewMessageText: (newMessage: string) => void
     subscribe: (observer: (state: StateProps) => void) => void
     getState: () => StateProps
+    dispatch: (action: ActionsType) => void
 }
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+export type ActionsType = AddPostActionType | UpdateNewPostTextActionType
 
 export let store: StoreProps = {
     _state: {
@@ -127,26 +137,15 @@ export let store: StoreProps = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber(state: StateProps) {
         console.log("State were changed")
     },
-    addPost() {
-        const newPost = {
-            id: 4,
-            post: this._state.profilePage.newPostText,
-            likesCount: 0,
-            src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
-        }
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber(this._state);
+
+    getState() {
+        return this._state;
     },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
+    subscribe(observer: (state: StateProps) => void) {
+        this._callSubscriber = observer; // наблюдатель // publisher-subscriber // addEventListener
     },
     addMessage() {
         const newMessage = {
@@ -162,7 +161,20 @@ export let store: StoreProps = {
         this._state.dialogsPage.newMessageText = newMessage;
         this._callSubscriber(this._state);
     },
-    subscribe(observer: (state: StateProps) => void) {
-        this._callSubscriber = observer; // наблюдатель // publisher-subscriber // addEventListener
-    },
+    dispatch(action: ActionsType) { // { type: 'What need to do', }
+        if (action.type === 'ADD-POST') {
+            const newPost = {
+                id: 4,
+                post: this._state.profilePage.newPostText,
+                likesCount: 0,
+                src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
+            }
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
 }

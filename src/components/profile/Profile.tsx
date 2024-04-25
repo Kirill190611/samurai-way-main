@@ -2,24 +2,21 @@ import React from 'react';
 import classes from './Profile.module.css';
 import {MyPosts} from "./myPosts/post/MyPosts";
 import {ProfileInfo} from "./myProfile/ProfileInfo";
-import {ProfileStateProps} from "../../redux/State";
+import {ActionsType, ProfileStateProps} from "../../redux/State";
 
 type ProfileProps = {
     state: ProfileStateProps
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsType) => void
 }
 export const Profile = ({
                             state,
-                            addPost,
-                            updateNewPostText,
+                            dispatch
                         }: ProfileProps) => {
     return (
         <main className={classes.profile}>
             <ProfileInfo profile={state.profileData}/>
             <MyPosts posts={state.postsData}
-                     addPost={addPost}
-                     updateNewPostText={updateNewPostText}
+                     dispatch={dispatch}
                      newPostText={state.newPostText}/>
         </main>
     );
