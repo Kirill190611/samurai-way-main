@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import classes from './MyPosts.module.css'
 import {PostList} from "./PostList";
 import {ActionsType, PostProps} from "../../../../redux/State";

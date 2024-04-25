@@ -2,18 +2,16 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import {DialogsList,} from "./dialog/DialogsList";
 import {MessagesList} from "./message/MessagesList";
-import {DialogsStateProps} from "../../redux/State";
+import {ActionsType, DialogsStateProps} from "../../redux/State";
 
 type DialogsProps = {
     state: DialogsStateProps
-    addMessage: () => void
-    updatedNewMessageText: (newMessage: string) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export const Dialogs = ({
                             state,
-                            addMessage,
-                            updatedNewMessageText,
+                            dispatch
                         }: DialogsProps) => {
     return (
         <div className={classes.dialogs}>
@@ -21,8 +19,7 @@ export const Dialogs = ({
             <div className={classes.dialogs_container}>
                 <DialogsList users={state.users}/>
                 <MessagesList messages={state.messages}
-                              addMessage={addMessage}
-                              updatedNewMessageText={updatedNewMessageText}
+                              dispatch={dispatch}
                               newMessage={state.newMessageText}/>
             </div>
         </div>

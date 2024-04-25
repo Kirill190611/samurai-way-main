@@ -1,30 +1,33 @@
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
-import {MessageProps} from "../../../redux/State";
+import {ActionsType, MessageProps} from "../../../redux/State";
 import {useRef} from "react";
 
 type MessagesListProps = {
     messages: Array<MessageProps>
-    addMessage: () => void
-    updatedNewMessageText: (newMessage: string) => void
+    dispatch: (action: ActionsType) => void
     newMessage: string
 };
 export const MessagesList = ({
                                  messages,
-                                 addMessage,
-                                 updatedNewMessageText,
+                                 dispatch,
                                  newMessage,
                              }: MessagesListProps) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
 
     const onAddMessage = () => {
-        addMessage();
+        dispatch({
+            type: "ADD-MESSAGE"
+        });
     }
 
     const onMessageChange = () => {
         if (newMessageElement.current !== null) {
-            updatedNewMessageText(newMessageElement.current.value);
+            dispatch({
+                type: "UPDATE-NEW-MESSAGE-TEXT",
+                newMessage: newMessageElement.current.value
+            });
         }
     }
 

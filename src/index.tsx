@@ -8,9 +8,7 @@ import {StateProps, store} from "./redux/State";
 let rerenderEntireTree = (state: StateProps) => {
     ReactDOM.render(
         <App state={state}
-             dispatch={store.dispatch.bind(store)}
-             addMessage={store.addMessage.bind(store)}
-             updatedNewMessageText={store.updatedNewMessageText.bind(store)}/>,
+             dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }

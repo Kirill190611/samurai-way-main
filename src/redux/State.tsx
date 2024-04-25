@@ -57,8 +57,6 @@ export type StateProps = {
 export type StoreProps = {
     _state: StateProps
     _callSubscriber: (state: StateProps) => void
-    addMessage: () => void
-    updatedNewMessageText: (newMessage: string) => void
     subscribe: (observer: (state: StateProps) => void) => void
     getState: () => StateProps
     dispatch: (action: ActionsType) => void
@@ -73,7 +71,19 @@ type UpdateNewPostTextActionType = {
     newText: string
 }
 
-export type ActionsType = AddPostActionType | UpdateNewPostTextActionType
+type AddMessageActionType = {
+    type: 'ADD-MESSAGE'
+}
+
+type UpdatedNewMessageTextActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newMessage: string
+}
+
+export type ActionsType = AddPostActionType
+    | UpdateNewPostTextActionType
+    | AddMessageActionType
+    | UpdatedNewMessageTextActionType
 
 export let store: StoreProps = {
     _state: {
@@ -131,9 +141,9 @@ export let store: StoreProps = {
         },
         navigationPage: {
             topFriends: [
-                { id: 1, name: "Nastya", avatar: "avatar 1"},
-                { id: 2, name: "Sasha", avatar: "avatar 2"},
-                { id: 3, name: "Lika", avatar: "avatar 3"},
+                {id: 1, name: "Nastya", avatar: "avatar 1"},
+                {id: 2, name: "Sasha", avatar: "avatar 2"},
+                {id: 3, name: "Lika", avatar: "avatar 3"},
             ]
         }
     },
@@ -147,20 +157,7 @@ export let store: StoreProps = {
     subscribe(observer: (state: StateProps) => void) {
         this._callSubscriber = observer; // наблюдатель // publisher-subscriber // addEventListener
     },
-    addMessage() {
-        const newMessage = {
-            id: 7,
-            message: this._state.dialogsPage.newMessageText,
-            isFriendMessage: false,
-        }
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = "";
-        this._callSubscriber(this._state)
-    },
-    updatedNewMessageText(newMessage: string) {
-        this._state.dialogsPage.newMessageText = newMessage;
-        this._callSubscriber(this._state);
-    },
+
     dispatch(action: ActionsType) { // { type: 'What need to do', }
         if (action.type === 'ADD-POST') {
             const newPost = {
@@ -174,6 +171,18 @@ export let store: StoreProps = {
             this._callSubscriber(this._state);
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            const newMessage = {
+                id: 7,
+                message: this._state.dialogsPage.newMessageText,
+                isFriendMessage: false,
+            }
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessageText = "";
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.newMessage;
             this._callSubscriber(this._state);
         }
     }

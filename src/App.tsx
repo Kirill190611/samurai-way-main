@@ -12,15 +12,11 @@ import {ActionsType, StateProps} from "./redux/State";
 
 type AppProps = {
     state: StateProps
-    addMessage: () => void
-    updatedNewMessageText: (newMessage: string) => void
     dispatch: (action: ActionsType) => void
 }
 
 const App = ({
                  state,
-                 addMessage,
-                 updatedNewMessageText,
                  dispatch,
              }: AppProps) => {
 
@@ -36,8 +32,7 @@ const App = ({
                                                  dispatch={dispatch}/>}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs state={state.dialogsPage}
-                                                 addMessage={addMessage}
-                                                 updatedNewMessageText={updatedNewMessageText}/>}/>
+                                                 dispatch={dispatch}/>}/>
                         <Route path='/news/*'
                                Component={News}/>
                         <Route path='/music/*'
