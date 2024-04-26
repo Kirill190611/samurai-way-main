@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import classes from './MyPosts.module.css'
 import {PostList} from "./PostList";
-import {ActionsType, PostProps} from "../../../../redux/State";
+import {ActionsType, addPostAC, onPostChangeAC, PostProps} from "../../../../redux/State";
 
 type MyPostsProps = {
     posts: Array<PostProps>
@@ -16,18 +16,13 @@ export const MyPosts = ({
                         }: MyPostsProps) => {
     const newPostElement = useRef<HTMLTextAreaElement>(null)
 
-    const onAddPost = () => {
-        dispatch({
-            type: 'ADD-POST'
-        });
+    const addPost = () => {
+        dispatch(addPostAC());
     }
 
     const onPostChange = () => {
         if (newPostElement.current !== null) {
-            dispatch({
-                type: 'UPDATE-NEW-POST-TEXT',
-                newText: newPostElement.current.value
-            });
+            dispatch(onPostChangeAC(newPostElement.current.value));
         }
     }
 
@@ -39,7 +34,7 @@ export const MyPosts = ({
                           ref={newPostElement}
                           placeholder="your news"
                           onChange={onPostChange}/>
-                <button onClick={onAddPost}>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <PostList postsData={posts}/>
         </div>

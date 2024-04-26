@@ -85,6 +85,9 @@ export type ActionsType = AddPostActionType
     | AddMessageActionType
     | UpdatedNewMessageTextActionType
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export let store: StoreProps = {
     _state: {
         profilePage: {
@@ -186,4 +189,17 @@ export let store: StoreProps = {
             this._callSubscriber(this._state);
         }
     }
+}
+
+export const addPostAC  = () => {
+    return {
+        type: ADD_POST,
+    } as const
+}
+
+export const onPostChangeAC = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText
+    } as const
 }
