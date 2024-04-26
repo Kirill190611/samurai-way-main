@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
-import {ActionsType, MessageProps} from "../../../redux/State";
+import {ActionsType, addMessageAC, MessageProps, onMessageChangeAC} from "../../../redux/State";
 import {useRef} from "react";
 
 type MessagesListProps = {
@@ -16,18 +16,13 @@ export const MessagesList = ({
                              }: MessagesListProps) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
 
-    const onAddMessage = () => {
-        dispatch({
-            type: "ADD-MESSAGE"
-        });
+    const AddMessage = () => {
+        dispatch(addMessageAC());
     }
 
     const onMessageChange = () => {
         if (newMessageElement.current !== null) {
-            dispatch({
-                type: "UPDATE-NEW-MESSAGE-TEXT",
-                newMessage: newMessageElement.current.value
-            });
+            dispatch(onMessageChangeAC(newMessage));
         }
     }
 
@@ -44,7 +39,7 @@ export const MessagesList = ({
                 <textarea ref={newMessageElement} value={newMessage}
                           placeholder="your news"
                           onChange={onMessageChange}/>
-                <button onClick={onAddMessage}>Add message</button>
+                <button onClick={AddMessage}>Add message</button>
             </form>
         </div>
     );

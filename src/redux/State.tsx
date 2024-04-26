@@ -4,7 +4,6 @@ export type PostProps = {
     likesCount: number
     src: string
 }
-
 export type ProfileDataProps = {
     name: string
     birthdayDate: string
@@ -13,47 +12,39 @@ export type ProfileDataProps = {
     city: string
     education: string
 }
-
 export type UsersProps = {
     id: number
     name: string
     avatar: string
 }
-
 export type MessageProps = {
     id: number
     message: string
     isFriendMessage: boolean
 }
-
 export type TopFriendsProps = {
     id: number
     name: string
     avatar: string
 }
-
 export type ProfileStateProps = {
     postsData: Array<PostProps>
     profileData: Array<ProfileDataProps>
     newPostText: string
 }
-
 export type DialogsStateProps = {
     users: Array<UsersProps>
     messages: Array<MessageProps>
     newMessageText: string
 }
-
 export type NavigationStateProps = {
     topFriends: Array<TopFriendsProps>
 }
-
 export type StateProps = {
     profilePage: ProfileStateProps
     dialogsPage: DialogsStateProps
     navigationPage: NavigationStateProps
 }
-
 export type StoreProps = {
     _state: StateProps
     _callSubscriber: (state: StateProps) => void
@@ -61,20 +52,16 @@ export type StoreProps = {
     getState: () => StateProps
     dispatch: (action: ActionsType) => void
 }
-
 type AddPostActionType = {
     type: 'ADD-POST'
 }
-
 type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-
 type AddMessageActionType = {
     type: 'ADD-MESSAGE'
 }
-
 type UpdatedNewMessageTextActionType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
@@ -87,6 +74,8 @@ export type ActionsType = AddPostActionType
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 export let store: StoreProps = {
     _state: {
@@ -191,7 +180,7 @@ export let store: StoreProps = {
     }
 }
 
-export const addPostAC  = () => {
+export const addPostAC = () => {
     return {
         type: ADD_POST,
     } as const
@@ -201,5 +190,18 @@ export const onPostChangeAC = (newText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText
+    } as const
+}
+
+export const addMessageAC = () => {
+    return {
+        type: ADD_MESSAGE
+    } as const
+}
+
+export const onMessageChangeAC = (newMessage: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newMessage
     } as const
 }
