@@ -151,31 +151,36 @@ export let store: StoreProps = {
     },
 
     dispatch(action: ActionsType) { // { type: 'What need to do', }
-        if (action.type === 'ADD-POST') {
-            const newPost = {
-                id: 4,
-                post: this._state.profilePage.newPostText,
-                likesCount: 0,
-                src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
+        switch (action.type) {
+            case 'ADD-POST': {
+                const newPost = {
+                    id: 4,
+                    post: this._state.profilePage.newPostText,
+                    likesCount: 0,
+                    src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
+                }
+                this._state.profilePage.postsData.push(newPost);
+                this._state.profilePage.newPostText = "";
+                return this._callSubscriber(this._state);
             }
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            const newMessage = {
-                id: 7,
-                message: this._state.dialogsPage.newMessageText,
-                isFriendMessage: false,
+            case 'UPDATE-NEW-POST-TEXT': {
+                this._state.profilePage.newPostText = action.newText;
+                return this._callSubscriber(this._state);
             }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = "";
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newMessage;
-            this._callSubscriber(this._state);
+            case 'ADD-MESSAGE': {
+                const newMessage = {
+                    id: 7,
+                    message: this._state.dialogsPage.newMessageText,
+                    isFriendMessage: false,
+                }
+                this._state.dialogsPage.messages.push(newMessage);
+                this._state.dialogsPage.newMessageText = "";
+                return this._callSubscriber(this._state)
+            }
+            case 'UPDATE-NEW-MESSAGE-TEXT': {
+                this._state.dialogsPage.newMessageText = action.newMessage;
+                return this._callSubscriber(this._state);
+            }
         }
     }
 }
