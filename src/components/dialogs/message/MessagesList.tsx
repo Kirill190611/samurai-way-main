@@ -7,12 +7,12 @@ import {useRef} from "react";
 type MessagesListProps = {
     messages: Array<MessageProps>
     dispatch: (action: ActionsType) => void
-    newMessage: string
+    newMessageText: string
 };
 export const MessagesList = ({
                                  messages,
                                  dispatch,
-                                 newMessage,
+                                 newMessageText,
                              }: MessagesListProps) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
 
@@ -22,7 +22,7 @@ export const MessagesList = ({
 
     const onMessageChange = () => {
         if (newMessageElement.current !== null) {
-            dispatch(onMessageChangeAC(newMessage));
+            dispatch(onMessageChangeAC(newMessageElement.current.value));
         }
     }
 
@@ -35,12 +35,12 @@ export const MessagesList = ({
                                                       isFriendMessage={message.isFriendMessage}/>)}
 
             </ul>
-            <form className={classes.dialogs_addMessage} action="#">
-                <textarea ref={newMessageElement} value={newMessage}
+            <div className={classes.dialogs_addMessage}>
+                <textarea ref={newMessageElement} value={newMessageText}
                           placeholder="your news"
                           onChange={onMessageChange}/>
                 <button onClick={AddMessage}>Add message</button>
-            </form>
+            </div>
         </div>
     );
 };

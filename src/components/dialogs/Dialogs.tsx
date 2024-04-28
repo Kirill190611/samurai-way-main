@@ -20,7 +20,7 @@ export const Dialogs = ({
                 <DialogsList users={state.users}/>
                 <MessagesList messages={state.messages}
                               dispatch={dispatch}
-                              newMessage={state.newMessageText}/>
+                              newMessageText={state.newMessageText}/>
             </div>
         </div>
     );

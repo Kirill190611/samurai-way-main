@@ -1,5 +1,7 @@
+import {v1} from "uuid";
+
 export type PostProps = {
-    id: number
+    id: string
     post: string
     likesCount: number
     src: string
@@ -13,17 +15,17 @@ export type ProfileDataProps = {
     education: string
 }
 export type UsersProps = {
-    id: number
+    id: string
     name: string
     avatar: string
 }
 export type MessageProps = {
-    id: number
+    id: string
     message: string
     isFriendMessage: boolean
 }
 export type TopFriendsProps = {
-    id: number
+    id: string
     name: string
     avatar: string
 }
@@ -82,19 +84,19 @@ export let store: StoreProps = {
         profilePage: {
             postsData: [
                 {
-                    id: 1,
+                    id: v1(),
                     post: "Hello. How are you",
                     likesCount: 5,
                     src: "https://i1.sndcdn.com/avatars-000179405104-pcjko5-t240x240.jpg",
                 },
                 {
-                    id: 2,
+                    id: v1(),
                     post: "My first post",
                     likesCount: 10,
                     src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp",
                 },
                 {
-                    id: 3,
+                    id: v1(),
                     post: "My second post",
                     likesCount: 15,
                     src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp",
@@ -114,28 +116,28 @@ export let store: StoreProps = {
         },
         dialogsPage: {
             users: [
-                {id: 1, name: "Kirill", avatar: "Avatar1",},
-                {id: 2, name: "Nastya", avatar: "Avatar2",},
-                {id: 3, name: "Dima", avatar: "Avatar3",},
-                {id: 4, name: "Sergey", avatar: "Avatar4",},
-                {id: 5, name: "Artem", avatar: "Avatar5",},
-                {id: 6, name: "Valera", avatar: "Avatar6",},
+                {id: v1(), name: "Kirill", avatar: "Avatar1",},
+                {id: v1(), name: "Nastya", avatar: "Avatar2",},
+                {id: v1(), name: "Dima", avatar: "Avatar3",},
+                {id: v1(), name: "Sergey", avatar: "Avatar4",},
+                {id: v1(), name: "Artem", avatar: "Avatar5",},
+                {id: v1(), name: "Valera", avatar: "Avatar6",},
             ],
             messages: [
-                {id: 1, message: "Hello", isFriendMessage: false},
-                {id: 2, message: "Hello, Im Kirill", isFriendMessage: true},
-                {id: 3, message: "How are you?", isFriendMessage: true},
-                {id: 4, message: "OK", isFriendMessage: false},
-                {id: 5, message: "What about you?", isFriendMessage: false},
-                {id: 6, message: "Im good too", isFriendMessage: true},
+                {id: v1(), message: "Hello", isFriendMessage: false},
+                {id: v1(), message: "Hello, Im Kirill", isFriendMessage: true},
+                {id: v1(), message: "How are you?", isFriendMessage: true},
+                {id: v1(), message: "OK", isFriendMessage: false},
+                {id: v1(), message: "What about you?", isFriendMessage: false},
+                {id: v1(), message: "Im good too", isFriendMessage: true},
             ],
             newMessageText: "Test message",
         },
         navigationPage: {
             topFriends: [
-                {id: 1, name: "Nastya", avatar: "avatar 1"},
-                {id: 2, name: "Sasha", avatar: "avatar 2"},
-                {id: 3, name: "Lika", avatar: "avatar 3"},
+                {id: v1(), name: "Nastya", avatar: "avatar 1"},
+                {id: v1(), name: "Sasha", avatar: "avatar 2"},
+                {id: v1(), name: "Lika", avatar: "avatar 3"},
             ]
         }
     },
@@ -154,7 +156,7 @@ export let store: StoreProps = {
         switch (action.type) {
             case 'ADD-POST': {
                 const newPost = {
-                    id: 4,
+                    id: v1(),
                     post: this._state.profilePage.newPostText,
                     likesCount: 0,
                     src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
@@ -167,19 +169,19 @@ export let store: StoreProps = {
                 this._state.profilePage.newPostText = action.newText;
                 return this._callSubscriber(this._state);
             }
+            case 'UPDATE-NEW-MESSAGE-TEXT': {
+                this._state.dialogsPage.newMessageText = action.newMessage;
+                return this._callSubscriber(this._state);
+            }
             case 'ADD-MESSAGE': {
                 const newMessage = {
-                    id: 7,
+                    id: v1(),
                     message: this._state.dialogsPage.newMessageText,
                     isFriendMessage: false,
                 }
                 this._state.dialogsPage.messages.push(newMessage);
                 this._state.dialogsPage.newMessageText = "";
                 return this._callSubscriber(this._state)
-            }
-            case 'UPDATE-NEW-MESSAGE-TEXT': {
-                this._state.dialogsPage.newMessageText = action.newMessage;
-                return this._callSubscriber(this._state);
             }
         }
     }
