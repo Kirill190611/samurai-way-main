@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 
 export type PostProps = {
     id: string
@@ -74,11 +76,6 @@ export type ActionsType = AddPostActionType
     | AddMessageActionType
     | UpdatedNewMessageTextActionType
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
-
 export let store: StoreProps = {
     _state: {
         profilePage: {
@@ -153,7 +150,11 @@ export let store: StoreProps = {
     },
 
     dispatch(action: ActionsType) { // { type: 'What need to do', }
-        switch (action.type) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
+
+        /*switch (action.type) {
             case 'ADD-POST': {
                 const newPost = {
                     id: v1(),
@@ -183,32 +184,6 @@ export let store: StoreProps = {
                 this._state.dialogsPage.newMessageText = "";
                 return this._callSubscriber(this._state)
             }
-        }
+        }*/
     }
-}
-
-export const addPostAC = () => {
-    return {
-        type: ADD_POST,
-    } as const
-}
-
-export const onPostChangeAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText
-    } as const
-}
-
-export const addMessageAC = () => {
-    return {
-        type: ADD_MESSAGE
-    } as const
-}
-
-export const onMessageChangeAC = (newMessage: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newMessage
-    } as const
 }

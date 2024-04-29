@@ -1,8 +1,9 @@
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
-import {ActionsType, addMessageAC, MessageProps, onMessageChangeAC} from "../../../redux/State";
+import {ActionsType, MessageProps} from "../../../redux/State";
 import {useRef} from "react";
+import {addMessageAC, onMessageChangeAC} from "../../../redux/dialogs-reducer";
 
 type MessagesListProps = {
     messages: Array<MessageProps>
