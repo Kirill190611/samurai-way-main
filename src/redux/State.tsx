@@ -109,7 +109,7 @@ export let store: StoreProps = {
                     education: "Bauman Moscow State Technical University`16",
                 },
             ],
-            newPostText: "IT-KAMASUTRA",
+            newPostText: "",
         },
         dialogsPage: {
             users: [
@@ -128,7 +128,7 @@ export let store: StoreProps = {
                 {id: v1(), message: "What about you?", isFriendMessage: false},
                 {id: v1(), message: "Im good too", isFriendMessage: true},
             ],
-            newMessageText: "Test message",
+            newMessageText: "",
         },
         navigationPage: {
             topFriends: [
@@ -153,37 +153,5 @@ export let store: StoreProps = {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._callSubscriber(this._state);
-
-        /*switch (action.type) {
-            case 'ADD-POST': {
-                const newPost = {
-                    id: v1(),
-                    post: this._state.profilePage.newPostText,
-                    likesCount: 0,
-                    src: "https://sotni.ru/wp-content/uploads/2023/08/gai-foks-khaker-8.webp"
-                }
-                this._state.profilePage.postsData.push(newPost);
-                this._state.profilePage.newPostText = "";
-                return this._callSubscriber(this._state);
-            }
-            case 'UPDATE-NEW-POST-TEXT': {
-                this._state.profilePage.newPostText = action.newText;
-                return this._callSubscriber(this._state);
-            }
-            case 'UPDATE-NEW-MESSAGE-TEXT': {
-                this._state.dialogsPage.newMessageText = action.newMessage;
-                return this._callSubscriber(this._state);
-            }
-            case 'ADD-MESSAGE': {
-                const newMessage = {
-                    id: v1(),
-                    message: this._state.dialogsPage.newMessageText,
-                    isFriendMessage: false,
-                }
-                this._state.dialogsPage.messages.push(newMessage);
-                this._state.dialogsPage.newMessageText = "";
-                return this._callSubscriber(this._state)
-            }
-        }*/
     }
 }
