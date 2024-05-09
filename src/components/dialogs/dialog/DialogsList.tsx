@@ -1,5 +1,5 @@
 import React from 'react';
-import {UsersProps} from "../../../redux/State";
+import {UsersProps} from "../../../redux/Store";
 import classes from "../Dialogs.module.css";
 import {DialogItem} from "./DialogItem";
 

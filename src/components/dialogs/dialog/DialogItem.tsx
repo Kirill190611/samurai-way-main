@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {NavLink} from "react-router-dom";
 import classes from "../Dialogs.module.css";
-import {UsersProps} from "../../../redux/State";
+import {UsersProps} from "../../../redux/Store";
 
 export const DialogItem = ({
                                id,

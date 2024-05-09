@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
-import {MessageProps} from "../../../redux/State";
+import {MessageProps} from "../../../redux/Store";
 
 export const MessageItem = ({
                                 id,

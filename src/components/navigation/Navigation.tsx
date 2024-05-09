@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Navigation.module.css';
 import {NavLink} from "react-router-dom";
 import {TopFriends} from "./TopFriends";
-import {NavigationStateProps} from "../../redux/State";
+import {NavigationStateProps} from "../../redux/Store";
 
 type NavigationProps = {
     state: NavigationStateProps

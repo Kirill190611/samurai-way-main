@@ -1,5 +1,5 @@
 import React from 'react';
-import {TopFriendsProps} from "../../redux/State";
+import {TopFriendsProps} from "../../redux/Store";
 import classes from './Navigation.module.css';
 
 type TopFriendProps = {

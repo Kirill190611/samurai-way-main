@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {PostItem} from "./PostItem";
-import {PostProps} from "../../../../redux/State";
+import {PostProps} from "../../../../redux/Store";
 
 type PostListProps = {
     postsData: Array<PostProps>

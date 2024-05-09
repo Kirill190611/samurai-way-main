@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import s from "./Post.module.css";
-import {PostProps} from "../../../../redux/State";
+import {PostProps} from "../../../../redux/Store";
 
 export const PostItem = ({
                              id,
