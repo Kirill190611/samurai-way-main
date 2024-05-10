@@ -1,29 +1,30 @@
 import React, {useRef} from 'react';
 import classes from './MyPosts.module.css'
 import {PostList} from "./PostList";
-import {ActionsType, PostProps} from "../../../../redux/Store";
-import {addPostAC, onPostChangeAC} from "../../../../redux/profile-reducer";
+import {PostProps} from "../../../../redux/Store";
 
 type MyPostsProps = {
     posts: Array<PostProps>
     newPostText: string
-    dispatch: (action: ActionsType) => void
+    addPost: () => void
+    updateNewPostText: (text: string) => void
 }
 
 export const MyPosts = ({
                             posts,
                             newPostText,
-                            dispatch
+                            addPost,
+                            updateNewPostText
                         }: MyPostsProps) => {
     const newPostElement = useRef<HTMLTextAreaElement>(null)
 
-    const addPost = () => {
-        dispatch(addPostAC());
+    const onAddPost = () => {
+        addPost();
     }
 
     const onPostChange = () => {
         if (newPostElement.current !== null) {
-            dispatch(onPostChangeAC(newPostElement.current.value));
+            updateNewPostText(newPostElement.current.value);
         }
     }
 
@@ -35,7 +36,7 @@ export const MyPosts = ({
                           ref={newPostElement}
                           placeholder="your news"
                           onChange={onPostChange}/>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <PostList postsData={posts}/>
         </div>

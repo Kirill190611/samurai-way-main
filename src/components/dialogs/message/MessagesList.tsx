@@ -1,29 +1,30 @@
 import * as React from 'react';
 import classes from "../Dialogs.module.css";
 import {MessageItem} from "./MessageItem";
-import {ActionsType, MessageProps} from "../../../redux/Store";
+import {MessageProps} from "../../../redux/Store";
 import {useRef} from "react";
-import {addMessageAC, onMessageChangeAC} from "../../../redux/dialogs-reducer";
 
 type MessagesListProps = {
     messages: Array<MessageProps>
-    dispatch: (action: ActionsType) => void
     newMessageText: string
+    addMessage: () => void
+    messageChange: (text: string) => void
 };
 export const MessagesList = ({
                                  messages,
-                                 dispatch,
                                  newMessageText,
+                                 addMessage,
+                                 messageChange,
                              }: MessagesListProps) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
 
     const AddMessage = () => {
-        dispatch(addMessageAC());
+        addMessage();
     }
 
     const onMessageChange = () => {
         if (newMessageElement.current !== null) {
-            dispatch(onMessageChangeAC(newMessageElement.current.value));
+            messageChange(newMessageElement.current.value);
         }
     }
 

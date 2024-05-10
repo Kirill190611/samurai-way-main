@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import {DialogsList} from "./dialog/DialogsList";
-import {MessagesList} from "./message/MessagesList";
 import {ActionsType, DialogsStateProps} from "../../redux/Store";
+import {MessagesListContainer} from "./message/MessagesListContainer";
 
 type DialogsProps = {
     state: DialogsStateProps
@@ -18,7 +18,7 @@ export const Dialogs = ({
             <h3>My dialogs</h3>
             <div className={classes.dialogs_container}>
                 <DialogsList users={state.users}/>
-                <MessagesList messages={state.messages}
+                <MessagesListContainer messages={state.messages}
                               dispatch={dispatch}
                               newMessageText={state.newMessageText}/>
             </div>
