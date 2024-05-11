@@ -1,36 +1,26 @@
-import React from 'react';
-import {StoreProps} from "../../../redux/Store";
+import {ActionsType} from "../../../redux/Store";
 import {addMessageAC, onMessageChangeAC} from "../../../redux/dialogs-reducer";
 import {MessagesList} from "./MessagesList";
-import {StoreContext} from "../../../StoreContext";
+import {connect} from "react-redux";
+import {AppRootStateType} from "../../../redux/redux-store";
 
-export const MessagesListContainer = () => {
+let mapStateToProps = (state: AppRootStateType) => {
+    return {
+        messages: state.dialogsPage.messages,
+        newMessageText: state.dialogsPage.newMessageText,
+    }
+}
 
-    return (
-        <StoreContext.Consumer>
-
-                {
-                    ((store: StoreProps | null) => {
-                        const AddMessage = () => {
-                            store?.dispatch(addMessageAC());
-                        }
-
-                        const messageChange = (text: string) => {
-                            if (text !== null) {
-                                store?.dispatch(onMessageChangeAC(text));
-                            }
-                        }
-
-                        return (
-                            <MessagesList messages={store?.getState().dialogsPage.messages || []}
-                                          addMessage={AddMessage}
-                                          messageChange={messageChange}
-                                          newMessageText={store?.getState().dialogsPage.newMessageText || ""}/>
-                        );
-                    })
-                }
-
-        </StoreContext.Consumer>
-
-    );
-};
+let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageAC());
+        },
+        messageChange: (text: string) => {
+            if (text !== null) {
+                dispatch(onMessageChangeAC(text));
+            }
+        },
+    }
+}
+export const MessagesListContainer = connect(mapStateToProps, mapDispatchToProps)(MessagesList);
