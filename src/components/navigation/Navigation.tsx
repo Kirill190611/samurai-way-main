@@ -3,7 +3,7 @@ import classes from './Navigation.module.css';
 import {NavLink} from "react-router-dom";
 import {TopFriends} from "./TopFriends";
 import {StoreContext} from '../../StoreContext';
-import {store, StoreProps} from "../../redux/Store";
+import {StoreProps} from "../../redux/Store";
 
 export const Navigation = () => {
     return (
