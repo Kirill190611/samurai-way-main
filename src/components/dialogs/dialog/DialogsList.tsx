@@ -1,22 +1,28 @@
 import React from 'react';
-import {UsersProps} from "../../../redux/Store";
 import classes from "../Dialogs.module.css";
 import {DialogItem} from "./DialogItem";
+import {StoreContext} from "../../../StoreContext";
+import {StoreProps} from "../../../redux/Store";
 
-type DialogsListProps = {
-    users: Array<UsersProps>
-}
-export const DialogsList = ({users}: DialogsListProps) => {
+export const DialogsList = () => {
     return (
-        <div>
-            <ul className={classes.dialogs_list}>
-                {
-                    users.map(user => <DialogItem id={user.id}
-                                                  name={user.name}
-                                                  avatar={user.avatar}/>
-                    )
-                }
-            </ul>
-        </div>
+        <StoreContext.Consumer>
+            {
+                ((store: StoreProps | null) => {
+                    return (
+                        <div>
+                            <ul className={classes.dialogs_list}>
+                                {
+                                    store?.getState().dialogsPage.users.map(user => <DialogItem id={user.id}
+                                                                                               name={user.name}
+                                                                                               avatar={user.avatar}/>
+                                    )
+                                }
+                            </ul>
+                        </div>
+                    );
+                })
+            }
+        </StoreContext.Consumer>
     );
 };

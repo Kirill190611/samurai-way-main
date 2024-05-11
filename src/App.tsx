@@ -8,31 +8,20 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {ActionsType, StateProps} from "./redux/Store";
 
-type AppProps = {
-    state: StateProps
-    dispatch: (action: ActionsType) => void
-}
-
-const App = ({
-                 state,
-                 dispatch,
-             }: AppProps) => {
+const App = () => {
 
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navigation state={state.navigationPage}/>
+                <Navigation/>
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path='/profile/*'
-                               element={<Profile state={state.profilePage}
-                                                 dispatch={dispatch}/>}/>
+                               element={<Profile/>}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs state={state.dialogsPage}
-                                                 dispatch={dispatch}/>}/>
+                               element={<Dialogs/>}/>
                         <Route path='/news/*'
                                Component={News}/>
                         <Route path='/music/*'

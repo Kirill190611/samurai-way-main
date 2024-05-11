@@ -1,35 +1,36 @@
-import * as React from 'react';
-import {ActionsType, MessageProps} from "../../../redux/Store";
-import {useRef} from "react";
+import React from 'react';
+import {StoreProps} from "../../../redux/Store";
 import {addMessageAC, onMessageChangeAC} from "../../../redux/dialogs-reducer";
 import {MessagesList} from "./MessagesList";
+import {StoreContext} from "../../../StoreContext";
 
-type MessagesListProps = {
-    messages: Array<MessageProps>
-    dispatch: (action: ActionsType) => void
-    newMessageText: string
-};
-export const MessagesListContainer = ({
-                                 messages,
-                                 dispatch,
-                                 newMessageText,
-                             }: MessagesListProps) => {
-    const newMessageElement = useRef<HTMLTextAreaElement>(null)
-
-    const AddMessage = () => {
-        dispatch(addMessageAC());
-    }
-
-    const messageChange = (text: string) => {
-        if (text !== null) {
-            dispatch(onMessageChangeAC(text));
-        }
-    }
+export const MessagesListContainer = () => {
 
     return (
-        <MessagesList messages={messages}
-                      addMessage={AddMessage}
-                      messageChange={messageChange}
-                      newMessageText={newMessageText}/>
+        <StoreContext.Consumer>
+
+                {
+                    ((store: StoreProps | null) => {
+                        const AddMessage = () => {
+                            store?.dispatch(addMessageAC());
+                        }
+
+                        const messageChange = (text: string) => {
+                            if (text !== null) {
+                                store?.dispatch(onMessageChangeAC(text));
+                            }
+                        }
+
+                        return (
+                            <MessagesList messages={store?.getState().dialogsPage.messages || []}
+                                          addMessage={AddMessage}
+                                          messageChange={messageChange}
+                                          newMessageText={store?.getState().dialogsPage.newMessageText || ""}/>
+                        );
+                    })
+                }
+
+        </StoreContext.Consumer>
+
     );
 };
