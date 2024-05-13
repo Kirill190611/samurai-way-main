@@ -11,7 +11,8 @@ export const PostList = ({
     return (
         <ul>
 
-            {postsData.map(post => <PostItem id={post.id}
+            {postsData.map(post => <PostItem key={post.id}
+                                             id={post.id}
                                              post={post.post}
                                              likesCount={post.likesCount}
                                              src={post.src}/>

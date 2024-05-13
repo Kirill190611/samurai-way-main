@@ -39,7 +39,7 @@ export const MessagesList = ({
             </ul>
             <div className={classes.dialogs_addMessage}>
                 <textarea ref={newMessageElement} value={newMessageText}
-                          placeholder="your news"
+                          placeholder="you can send a new message"
                           onChange={onMessageChange}/>
                 <button onClick={AddMessage}>Add message</button>
             </div>

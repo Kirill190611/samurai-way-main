@@ -33,6 +33,7 @@ let initProfileState: ProfileStateProps = {
             avatarImage: "https://i1.sndcdn.com/avatars-000179405104-pcjko5-t240x240.jpg",
             city: "Obninsk",
             education: "Bauman Moscow State Technical University`16",
+            id: v1()
         },
     ],
     newPostText: "",

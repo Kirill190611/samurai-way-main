@@ -12,7 +12,7 @@ export const ProfileInfo = ({profileData}: ProfileInfoProps) => {
 
             {profileData.map(p => {
                 return (
-                    <>
+                    <div key={p.id}>
                         <img className={classes.profile__image}
                              src={`${p.profileImage}`}
                              alt={`Profile photo of ${p.name} user`}/>
@@ -32,7 +32,7 @@ export const ProfileInfo = ({profileData}: ProfileInfoProps) => {
                                 </ul>
                             </div>
                         </div>
-                    </>
+                    </div>
                 )
             })}
 
