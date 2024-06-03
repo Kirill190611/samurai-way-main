@@ -4,6 +4,7 @@ import {v1} from "uuid";
 const FOLLOW = "FOLLOW";
 const SHOW_MORE = "SHOW-MORE";
 const UNFOLLOW = "UNFOLLOW";
+const SET_FRIENDS = "SET-FRIENDS"
 
 let initialFriendsState: FriendsStateProps = {
     friends: [
@@ -74,6 +75,12 @@ export const friendsReducer = (state = initialFriendsState, action: ActionsType)
         case SHOW_MORE: {
             return state;
         }
+        case SET_FRIENDS: {
+            return {
+                ...state,
+                friends: [...state.friends, ...action.friends]
+            }
+        }
         default:
             return state;
     }
@@ -96,5 +103,12 @@ export const unfollowFriendAC = (userId: string) => {
 export const showMoreFriendsAC = () => {
     return {
         type: SHOW_MORE
+    } as const
+}
+
+export const setFriendsAC = (friends: FriendsStateProps) => {
+    return {
+        type: SET_FRIENDS,
+        friends
     } as const
 }
