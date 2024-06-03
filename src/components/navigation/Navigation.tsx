@@ -8,13 +8,18 @@ type NavigationProps = {
     friendsList: Array<TopFriendsProps>
 }
 
-export const Navigation = ({friendsList}:  NavigationProps) => {
+export const Navigation = ({friendsList}: NavigationProps) => {
     return (
         <nav className={classes.navigation}>
             <ul className={classes.navigation__list}>
                 <li>
                     <NavLink to="/profile"
                              className={({isActive}) => (isActive ? classes.active : classes.item)}>Profile</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/friends"
+                             className={({isActive}) => (isActive ? classes.active : classes.item)
+                             }>Friends</NavLink>
                 </li>
                 <li>
                     <NavLink to="/dialogs"

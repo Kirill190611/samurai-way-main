@@ -10,7 +10,7 @@ export const TopFriends = ({
                            }: TopFriendProps) => {
     return (
         <div className={classes.topFriend}>
-            <h3>Friends</h3>
+            <h3>Top Friends List</h3>
             <ul className={classes.friend__list}>
 
                 {friendsList.map(friend => {
