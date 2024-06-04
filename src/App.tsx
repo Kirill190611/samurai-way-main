@@ -8,7 +8,7 @@ import {News} from "./components/news/News";
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {NavigationContainer} from "./components/navigation/NavigationContainer";
-import {Friends} from "./components/friends/Friends";
+import {FriendsContainer} from "./components/friends/FriendsContainer";
 
 const App = () => {
 
@@ -28,7 +28,7 @@ const App = () => {
                         <Route path='/music/*'
                                Component={Music}/>
                         <Route path='/friends/*'
-                               element={<Friends/>}/>
+                               element={<FriendsContainer/>}/>
                         <Route path='/settings/*'
                                Component={Settings}/>
                     </Routes>

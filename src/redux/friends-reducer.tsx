@@ -1,4 +1,4 @@
-import {ActionsType, FriendsStateProps} from "./Store";
+import {ActionsType, FriendsListProps, FriendsStateProps} from "./Store";
 import {v1} from "uuid";
 
 const FOLLOW = "FOLLOW";
@@ -17,7 +17,7 @@ let initialFriendsState: FriendsStateProps = {
                 city: "Minsk",
             },
             status: "I am looking fir a Job right now...",
-            followed: false,
+            followed: true,
         },
         {
             id: v1(),
@@ -28,7 +28,7 @@ let initialFriendsState: FriendsStateProps = {
                 city: "Minsk",
             },
             status: "I am so pretty",
-            followed: false,
+            followed: true,
         },
         {
             id: v1(),
@@ -39,7 +39,7 @@ let initialFriendsState: FriendsStateProps = {
                 city: "Obninsk",
             },
             status: "I like football!",
-            followed: true,
+            followed: false,
         },
         {
             id: v1(),
@@ -50,7 +50,7 @@ let initialFriendsState: FriendsStateProps = {
                 city: "LA",
             },
             status: "I am free to help you to create good Video Production!",
-            followed: true,
+            followed: false,
         },
     ],
 }
@@ -106,7 +106,7 @@ export const showMoreFriendsAC = () => {
     } as const
 }
 
-export const setFriendsAC = (friends: FriendsStateProps) => {
+export const setFriendsAC = (friends: FriendsListProps[]) => {
     return {
         type: SET_FRIENDS,
         friends
