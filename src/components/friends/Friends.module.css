@@ -43,3 +43,14 @@
     background-color: #f3f168;
     border-radius: 50%;
 }
+
+.friends_infoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 75px;
+    border: 1px solid #808080;
+    border-radius: 5px;
+    padding: 5px;
+}
