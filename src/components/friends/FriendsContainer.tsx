@@ -1,4 +1,4 @@
-import {ActionsType, FriendsListProps, FriendsStateProps} from "../../redux/Store";
+import {ActionsType, FriendsListProps} from "../../redux/Store";
 import {connect} from "react-redux";
 import {Friends} from "./Friends";
 import {AppRootStateType} from "../../redux/redux-store";
