@@ -25,3 +25,5 @@ let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
 }
 
 export const FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(Friends);
+
+//Todo: Need to check 'AJAX in details'
