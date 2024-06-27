@@ -104,3 +104,5 @@ export const Friends = ({
         </div>
     );
 };
+
+//Todo: practice with API (51 - users API)
