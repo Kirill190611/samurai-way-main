@@ -106,3 +106,5 @@ export const Friends = ({
 };
 
 //Todo: practice with API (51 - users API)
+
+//Return to initial state due to mistake with API
